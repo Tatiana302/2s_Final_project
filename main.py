@@ -1,8 +1,7 @@
 from diffusers import StableDiffusionPipeline
 import torch
 import streamlit as st
-import Pillow
-import PIL.Image
+import imageio
 
 # model_id = "runwayml/stable-diffusion-v1-5"
 # pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
@@ -30,8 +29,8 @@ uploaded_file = st.file_uploader("Загрузите файл в формате 
 
 # Получение предсказания при помощи модели
 if uploaded_file is not None:
-    image = Image.open(uploaded_file)
-    st.image(image, caption='Загруженное изображение', use_column_width=True)
+    image = imageio.imread(uploaded_file)
+    st.image(output_image.astype('uint8'), caption='Обработанное изображение', use_column_width=True)
 
     with st.spinner("Идет обработка..."):
         input_image = torch.tensor([torch.tensor(image)])
