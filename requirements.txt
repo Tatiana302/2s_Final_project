@@ -2,4 +2,4 @@
 diffusers
 torch
 streamlit
-PIL
+PIL from Image
