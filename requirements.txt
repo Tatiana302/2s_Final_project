@@ -2,5 +2,4 @@
 diffusers
 torch
 streamlit
-Pillow
-PIL.Image
+imageio
