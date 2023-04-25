@@ -2,4 +2,5 @@
 diffusers
 torch
 streamlit
-PIL from Image
+Pillow
+PIL.Image
