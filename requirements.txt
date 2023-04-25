@@ -1,5 +1,5 @@
 # пакеты Python, которые необходимо установить перед запуском приложения
-import diffusers
-import torch
-import streamlit
-from PIL import Image
+diffusers
+torch
+streamlit
+PIL
