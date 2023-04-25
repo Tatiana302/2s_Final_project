@@ -2,4 +2,6 @@
 diffusers
 torch
 streamlit
+transformers
 imageio
+
