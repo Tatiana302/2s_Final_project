@@ -4,3 +4,4 @@ torch
 streamlit
 transformers
 imageio
+accelerate
