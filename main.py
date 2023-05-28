@@ -1,43 +1,20 @@
-from diffusers import StableDiffusionPipeline
+import argparse
+from pathlib import Path
+
 import torch
-import streamlit as st
-from PIL import Image
-st.set_option('deprecation.showfileUploaderEncoding', False)
-import imageio
-import accelerate
+from diffusers import StableDiffusionPipeline
 
-# model_id = "runwayml/stable-diffusion-v1-5"
-# pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.bfloat16)
-# pipe = pipe.to("cuda")
-#
-# prompt = "a photo of an astronaut riding a horse on mars"
-# image = pipe(prompt).images[0]
-#
-# image.save("astronaut_rides_horse.png")
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-P", "--prompt", action='append', required=True)
+    args = parser.parse_args()
 
-# Загрузка модели
-@st.cache(allow_output_mutation=True)
-def load_model():
-    model_id = "runwayml/stable-diffusion-v1-5"
-    pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.bfloat16)
-    pipe = pipe.to("cuda")
-    return pipe
+    pipe = StableDiffusionPipeline.from_pretrained("./models/runwayml/stable-diffusion-v1-5", local_files_only=True)
+    if torch.cuda.is_available():
+        pipe.to("cuda")
+    images = pipe(args.prompt).images
 
-
-pipe = load_model()
-
-# Отображение формы загрузки пользовательской картинки
-st.set_option('deprecation.showfileUploaderEncoding', False)
-uploaded_file = st.sidebar.file_uploader(label="Загрузите файл в формате PNG или JPG", type=["png", "jpg"])
-
-# Получение предсказания при помощи модели
-if uploaded_file is not None:
-    image = imageio.imread(uploaded_file)
-    st.image(output_image.astype('uint8'), caption='Обработанное изображение', use_column_width=True)
-
-    with st.spinner("Идет обработка..."):
-        input_image = torch.tensor([torch.tensor(image)])
-        prompt = "a photo of an astronaut riding a horse on mars"
-        output_image = pipe(prompt, init_image=input_image, num_images=1).images[0]
-
-        st.image(output_image, caption='Обработанное изображение', use_column_width=True)
+    output = Path("./output")
+    output.mkdir(parents=True, exist_ok=True)
+    for i in range(len(images)):
+        images[i].save(output / f"{i}.png")
