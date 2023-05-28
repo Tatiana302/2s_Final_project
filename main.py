@@ -1,11 +1,14 @@
 from diffusers import StableDiffusionPipeline
 import torch
 import streamlit as st
+from streamlit_cropper import st_cropper
+from PIL import Image
+st.set_option('deprecation.showfileUploaderEncoding', False)
 import imageio
 import accelerate
 
 # model_id = "runwayml/stable-diffusion-v1-5"
-# pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
+# pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.bfloat16)
 # pipe = pipe.to("cuda")
 #
 # prompt = "a photo of an astronaut riding a horse on mars"
