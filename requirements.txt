@@ -4,4 +4,4 @@ transformers
 accelerate
 scipy
 ftfy
-safetensors
+safetensors # используем библиотеку safetensors для хранения тензоров вместо pickle, по рекоммендации Hugging Face, для большей безопасности и скорости
