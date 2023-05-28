@@ -5,3 +5,7 @@ accelerate
 scipy
 ftfy
 safetensors # используем библиотеку safetensors для хранения тензоров вместо pickle, по рекоммендации Hugging Face, для большей безопасности и скорости
+
+# для локального запуска
+pip install -r
+pip install dstack --upgrade
