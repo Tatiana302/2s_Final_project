@@ -1,7 +1,6 @@
 from diffusers import StableDiffusionPipeline
 import torch
 import streamlit as st
-from streamlit_cropper import st_cropper
 from PIL import Image
 st.set_option('deprecation.showfileUploaderEncoding', False)
 import imageio
