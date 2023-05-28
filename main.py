@@ -24,7 +24,7 @@ def load_model():
 
 pipe = load_model()
 
-images = load_model.text_to_image("photograph of an astronaut riding a banana with old dragon", batch_size=3)
+images =  model_id.text_to_image("photograph of an astronaut riding a banana with old dragon", batch_size=3)
 
 def plot_images(images):
     plt.figure(figsize=(20, 20))
