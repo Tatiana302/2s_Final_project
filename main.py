@@ -32,3 +32,7 @@ def plot_images(images):
         ax = plt.subplot(1, len(images), i + 1)
         plt.imshow(images[i])
         plt.axis("off")
+        
+plot_images(images)
+        
+     
