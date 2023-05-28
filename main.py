@@ -19,7 +19,7 @@ import accelerate
 @st.cache(allow_output_mutation=True)
 def load_model():
     model_id = "runwayml/stable-diffusion-v1-5"
-    pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
+    pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.bfloat16)
     pipe = pipe.to("cuda")
     return pipe
 
