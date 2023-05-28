@@ -1,3 +1,2 @@
-pip install git
-import torch
-print(torch.cuda.is_available())
+pip install -r stable_diffusion
+pip install dstack --upgrade
